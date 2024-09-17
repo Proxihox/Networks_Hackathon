@@ -1,7 +1,7 @@
 # Networks_Hackathon
 
 ## Servers
- You have access to 2 servers, one which communicates using https and other using tcp. To simulate these servers, there are 2 folders, namely server_https and server_tcp. These 2 servers store all files they get inside a folder called _____
+ You have access to 2 servers, one which communicates using https and other using tcp. To simulate these servers, there are 2 folders, namely server_https and server_tcp. These 2 servers store all files they get inside a folder called server_files
 
 ## How to interact with the servers
 
@@ -10,11 +10,11 @@
 
 ## Problem Statement
 FIle Sharing is very common over the internet, be it uploading some important document over cloud storage or downloading your favourite games!!\
-As long as the data is small in size, it is not a very big problem to send the file as a whole. But when file sizes are large, it is very difficult to send the file all at once.
+As long as the data is small in size, it is not a very big problem to send the file as a whole. But when file sizes are large, it is very difficult to send the file all at once.\
 To counter this problem, data is usually sent into smaller blocks called chunks, independently of each other.
 
 
-Write a library which has implements split_store(file) and split_fetch(file). Also write an example code which uses these 2 functions to store and fetch the file ________
+Write a library which implements split_store(file) and split_fetch(file). Also write an example code which uses these 2 functions to store and fetch the file 
 
 ### split_store(file)
 This function takes a file in your local device, splits this file into chunks of 1024 bytes and sends these chunks to server.
