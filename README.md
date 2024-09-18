@@ -69,3 +69,8 @@ You are expected to appropriately handle these chunks of data and patch them to 
 * Try to implement security features to make the file sharing secure
 * Try to use a other efficient data management algorithims to store large data
 * Try to have a check for malicious files
+
+**Note** : You are not allowed to modify the server code while working on basic functionalities like split_store(file) and split_fetch(file)<br>
+
+* However if you want to attempt some of the open-ended problems, you can create a new copy of entire codebase and work on it.
+* Submit the new copy of codebase containing solutions to open ended problems **along with** the original codebase having basic functionalities, adding an appropriate README file.
