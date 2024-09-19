@@ -4,7 +4,7 @@ import os
 app = Flask(__name__)
 
 # Directory to store uploaded files
-UPLOAD_FOLDER = '../server_files'
+UPLOAD_FOLDER = '../mem'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/')
