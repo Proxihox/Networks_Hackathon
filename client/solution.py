@@ -1,5 +1,5 @@
 
-from split_share import *
+from Networks_Hackathon.client.split_lib import *
 import os
 import filecmp
 

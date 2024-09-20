@@ -44,8 +44,8 @@ def download(file_name):
         print(f'An error occurred: {e}')
 
 
-server_path = '../server_files/'
-file_name = 'stuff.txt'
-local_path = '../local_files/'
-# local_path = '/home/prithvi/networks/local_files/'
-download(file_name)
+server_path = './https_server/mem/'
+local_path = './client/mem/'
+file_name = 'test.txt' 
+# upload(file_name)
+# download(file_name)

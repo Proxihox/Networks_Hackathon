@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify, abort, send_from_directory
+from flask import Flask, request, jsonify, abort, send_file
 import os
 
 app = Flask(__name__)
 
 # Directory to store uploaded files
-UPLOAD_FOLDER = '../mem'
+UPLOAD_FOLDER = './https_server/mem'
+DOWNLOAD_FOLDER = './https_server/mem/'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/')
@@ -35,9 +36,9 @@ def upload_file():
 def download_file(filename):
     try:
         # Check if the file exists
-        if os.path.exists(os.path.join(UPLOAD_FOLDER, filename)):
-            # Serve the file
-            return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
+        file_path =os.path.join(DOWNLOAD_FOLDER, filename)
+        if os.path.exists(file_path):
+            return send_file("../https_server/mem/"+filename, as_attachment=True)
         else:
             abort(404, description=f"File {filename} not found")
     except Exception as e:
@@ -45,4 +46,4 @@ def download_file(filename):
     
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0',debug=True, port=5000)

@@ -4,7 +4,7 @@ import os
 # Server configuration
 HOST = '127.0.0.1'  # Localhost (adjust as needed)
 PORT = 65432        # Non-privileged port
-UPLOAD_FOLDER = './mem'
+UPLOAD_FOLDER = './tcp_server/mem'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def receive_file(conn):
@@ -21,20 +21,21 @@ def receive_file(conn):
 
 def send_file(conn, file_name):
     file_path = os.path.join(UPLOAD_FOLDER, file_name)
+    print("IMP",file_path)
     if os.path.exists(file_path):
         file_size = os.path.getsize(file_path)
         
         # Send the file name and size
-        conn.send(file_name.encode().ljust(1024))  # Send file name (padded)
+        #conn.send(file_name.encode().ljust(1024))  # Send file name (padded)
         conn.send(str(file_size).encode().ljust(1024))  # Send file size (padded)
-        
+        print("IMP2",file_path)
         # Send the file in one go
         with open(file_path, 'rb') as file:
             file_data = file.read()  # Read the entire file
             conn.sendall(file_data)  # Send the file in one go
         print(f"File '{file_name}' sent.")
     else:
-        print(f"File '{file_name}' not found.")
+        print(f"File '{file_name}' not found and not sent.")
         conn.send(b'File not found')
 
 def handle_client(conn):
