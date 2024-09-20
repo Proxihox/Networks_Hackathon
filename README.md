@@ -1,26 +1,26 @@
 # Networks_Hackathon
 
-## Servers
+## The Servers
  You have access to 2 servers, one which communicates using HTTPS and other using TCP. To simulate these servers, there are 2 folders, namely server_https and server_tcp. These 2 servers store all files they get inside a folder called server_files
 
 
 ## Problem Statement
-FIle Sharing is very common over the internet, be it uploading some important document over cloud storage or downloading your favourite games!!</br>
+File Sharing is very common over the internet, be it uploading some important document over cloud storage or downloading your favourite games!!</br>
 As long as the data is small in size, it is not a very big problem to send the file as a whole. But when file sizes are large, it is very difficult to send the file all at once.</br>
 To counter this problem, data is usually sent into smaller blocks called chunks, independently of each other.
 
 
-Write a library which implements split_store(file) and split_fetch(file). Also write an example code which uses these 2 functions to store and fetch the file 
+Complete the 2 functions in the split_lib.py file which implements split_store(file) and split_fetch(file). You will be evaluated by running test.sh which launches the servers, imports the 2 functions from split_lib.py into client.py and then stores and retrieves the test.txt file. test.txt has been written such that each 1024 byte has a format of """" Also complete example code which uses these 2 functions to store and fetch the file. 
 
 ### split_store(file)
-This function takes a file in your local device, splits this file into chunks of 1024 bytes and sends these chunks to server.</br>
+This function takes a file in your local device, splits this file into chunks of 1024 bytes and sends these chunks to the servers.</br>
 We send every alternate chunk to the same server, for example say a file is split into 4 chunks.
 * Chunk-1 is sent to the server communicating via HTTPS
 * Chunk-2 is sent to the server communicating via TCP
 * Chunk-3 is sent to the server communicating via HTTPS
 * Chunk-4 is sent to the server communicating via TCP
 
-Once the chunks of data are uploaded, they will be stored in the server, at ../server_files
+Once the chunks of data are uploaded, they will be stored in the server, at <server_name>/mem
 
 **Note that the files are split between two servers, one communicating via HTTPS and other via TCP**
 
@@ -29,15 +29,15 @@ This function makes a request to each of the servers. The server sends chunks of
 
 You are expected to appropriately handle these chunks of data and patch them to get your originally uploaded file back.
 
-### Open ended problem
+### Bonus Problem Statement:
 * Try to implement security features to make the file sharing secure
 * Try to use a other efficient data management algorithims to store large data
 * Try to have a check for malicious files
 
-**Note** : You are not allowed to modify the server code while working on basic functionalities like split_store(file) and split_fetch(file)<br>
+**Note** : You are not allowed to modify the server code while working on the first Problem Statement (completing the split_store(file) and split_fetch(file) functions)<br>
 
 * However if you want to attempt some of the open-ended problems, you can create a new copy of entire codebase and work on it.
-* Submit the new copy of codebase containing solutions to open ended problems **along with** the original codebase having basic functionalities, adding an appropriate README file.
+* Submit the new copy of codebase containing solutions to open ended problems **along with** the original codebase having basic functionalities, adding an appropriate README file by directly making a PR to the same repo you cloned the starter code from.
 
 ## Interacting with Server
 To interact with the server, follow these steps :
