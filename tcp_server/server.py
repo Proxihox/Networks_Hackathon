@@ -1,11 +1,16 @@
 import socket
 import os
+import threading
+import json
 
 # Server configuration
 HOST = '127.0.0.1'  # Localhost (adjust as needed)
 PORT = 65432        # Non-privileged port
 UPLOAD_FOLDER = './tcp_server/mem'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+USERNAME = "admin"
+PASSWORD = "password"
 
 def receive_file(conn):
     # Receive file name
@@ -26,7 +31,6 @@ def send_file(conn, file_name):
         file_size = os.path.getsize(file_path)
         
         # Send the file name and size
-        #conn.send(file_name.encode().ljust(1024))  # Send file name (padded)
         conn.send(str(file_size).encode().ljust(1024))  # Send file size (padded)
         print("IMP2",file_path)
         # Send the file in one go
@@ -40,6 +44,14 @@ def send_file(conn, file_name):
 
 def handle_client(conn):
     try:
+        creds_raw = conn.recv(1024).decode().strip()
+        creds = json.loads(creds_raw)
+
+        if not (creds['username'] == USERNAME and creds['password'] == PASSWORD):
+            print("Invalid credentials")
+            conn.close()
+            return
+        
         # Receive operation type (upload or download)
         operation = conn.recv(1024).decode().strip()
         if operation == 'upload':
@@ -56,12 +68,11 @@ def start_server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.bind((HOST, PORT))
         server_socket.listen()
-
         print(f"Server listening on {HOST}:{PORT}...")
         while True:
             conn, addr = server_socket.accept()
-            print(f"Connected by {addr}")
-            handle_client(conn)
+            client_thread = threading.Thread(target=handle_client, args=(conn, ))
+            client_thread.start()
 
 if __name__ == "__main__":
     start_server()
