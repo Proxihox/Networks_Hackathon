@@ -3,42 +3,6 @@
 ## Servers
  You have access to 2 servers, one which communicates using HTTPS and other using TCP. To simulate these servers, there are 2 folders, namely server_https and server_tcp. These 2 servers store all files they get inside a folder called server_files
 
-## How to interact with the servers
-To run the server, go to the server directory and run the command python3 <server_name>.py</br>
-Do note that you run both the servers in **separate** terminals!! As both server need to be up and running at the same time.</br>
-
-Clone this repository to your local computer using
-```git
-git clone git@github.com:Proxihox/Networks_Hackathon.git
-```
-Open your terminal and navigate to the local copy of this repository</br>
-
-Then go to the directory of server communicating via HTTPS using 
-```sh
-cd server_https
-```
-Then type the command below to run the server
-```py
-python3 server.py
-```
-
-In a **separate** terminal tab, navigate to the local copy of this repository</br>
-
-Then go to the durectory of server communicating via TCP using
-```sh
-cd server_tcp
-```
-Then type the command below to run the server
-```py
-python3 server.py
-```
-
-To run the code you've written, do the same. Navigate to the directory of your code in a **separate** terminal and use the command</br>
-```py
-python3 your_file_name.py
-```
-
-***Note*** : You can write your code in multiple files but you have to encapsulate all the features into a single runnable file as a library!!
 
 ## Problem Statement
 FIle Sharing is very common over the internet, be it uploading some important document over cloud storage or downloading your favourite games!!</br>
@@ -74,3 +38,29 @@ You are expected to appropriately handle these chunks of data and patch them to 
 
 * However if you want to attempt some of the open-ended problems, you can create a new copy of entire codebase and work on it.
 * Submit the new copy of codebase containing solutions to open ended problems **along with** the original codebase having basic functionalities, adding an appropriate README file.
+
+## Interacting with Server
+To interact with the server, follow these steps :
+* Clone this repository : 
+```
+git clone https://github.com/Proxihox/Networks_Hackathon.git
+```
+* Go to the directory `client/split_share.py` and write the libraries for your functions
+* In the file `solution.py` fill the `split_store()` & `split_fetch()` functions
+* Ensure that your ports 5000 & 65432 are free, run following commands :
+```
+kill -9 $(lsof -t -i :5000)
+kill -9 $(lsof -t -i :65432)
+```
+*Note* : If they are already free, you will get `kill: not enough arguments` or `kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]`
+* You can check the working of servers by using following command :
+```
+chmod +x launch_servers.sh
+./launch_servers.sh
+```
+* Run the following commands (after stopping all previous processes) to test your solution :
+```
+chmod +x run.sh
+./test.sh
+```
+*Note* : To end the process, use `^C`
