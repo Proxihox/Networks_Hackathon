@@ -37,54 +37,27 @@ def split_store(file_name) :
     ## send the chunks 
     
     fileR = open(file_name, "rb")
-    
-    
-    def sendToTcp(chunk_num, bytes):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-        sock.connect((host, port))
-        sock.send("upload".encode().ljust(1024))
-        fileN = filename + str(chunk_num)
-        sock.send(fileN.encode().ljust(1024))
-        sock.send("1024".encode().ljust(1024))
-        sock.send(bytes.ljust(1024))
-        sock.close()
-    
-    def sendToHttp(chunk_num, bytes):
-        fileN = f"{filename}{chunk_num}"
-        
-        files = {'file': (fileN, bytes)}
-        response = requests.post(url, files=files)
-
-
-    if chunks == 1:
-        sendToTcp(0, fileR.read(1024))
-
-    if chunks % 2 == 0: # i have an even number of chunks
-        for chunk_num in range(0, chunks,2):
-            bytes = fileR.read(1024)
-            t1 = threading.Thread(target=sendToTcp, args=(chunk_num, bytes))
-            t1.start()
-            bytes = fileR.read(1024)
-            t2 = threading.Thread(target=sendToHttp, args=(chunk_num+1, bytes))
-            t2.start()
-            t1.join()
-            t2.join()
-    else:
-        for chunk_num in range(0, chunks-1,2):
-            bytes = fileR.read(1024)
-            t1 = threading.Thread(target=sendToTcp, args=(chunk_num, bytes))
-            t1.start()
-            bytes = fileR.read(1024)
-            t2 = threading.Thread(target=sendToHttp, args=(chunk_num+1, bytes))
-            t2.start()
-            t1.join()
-            t2.join()
-        sendToTcp(chunks-1, fileR.read(1024)) 
-    
-
+    for chunk_num in range(chunks):
+        bytes = fileR.read(1024)
+        if chunk_num % 2 == 0: #send to tcp
             
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+            sock.connect((host, port))
+            sock.send("upload".encode().ljust(1024))
+            fileN = filename + str(chunk_num)
+            sock.send(fileN.encode().ljust(1024))
+            sock.send("1024".encode().ljust(1024))
+            sock.send(bytes.ljust(1024))
+            sock.close()
+        else: #send to http 
+            fileN = f"{filename}{chunk_num}"
+            with open(fileN, "wb") as chunkfile:
+                chunkfile.write(bytes)
+            files = {'file': open(fileN, 'rb')}
+            response = requests.post(url, files=files)
+            os.remove(fileN)
 
-            
+
 
 
 
@@ -127,6 +100,12 @@ def split_fetch(file_name) :
             
             fileW.write(data)
     
+    i = 0
+    
+    
+        
+    
+
 
     fileW.close()
     
