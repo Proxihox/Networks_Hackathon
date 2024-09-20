@@ -1,7 +1,7 @@
 import requests
 
 # The URL of the Flask server
-url = 'http://localhost:5000/'
+url = 'http://localhost:5001/'
 url_upload = url + 'upload'
 url_download = url + 'download/'
 
