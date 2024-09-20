@@ -11,7 +11,7 @@ To counter this problem, data is usually sent into smaller blocks called chunks,
 
 
 Complete the 2 functions in the split_lib.py file which implements split_store(file) and split_fetch(file). You will be evaluated by running test.sh which launches the servers, imports the 2 functions from split_lib.py into client.py and then stores and retrieves the test.txt file. test.txt has been written so that after chunking each file will start with <server_name><chunk_no> and end with <chunk_no><server_name(in reverse)>
-
+Note: The use of AI in any form will result in disqualification, although referring to documentation is allowed.
 
 ### split_store(file)
 This function takes a file in your local device, splits this file into chunks of 1024 bytes and sends these chunks to the servers.</br>
