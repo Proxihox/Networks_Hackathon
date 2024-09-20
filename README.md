@@ -30,10 +30,8 @@ This function makes a request to each of the servers. The server sends chunks of
 
 You are expected to appropriately handle these chunks of data and patch them to get your originally uploaded file back.
 
-### Bonus Problem Statement:
-* Try to implement security features to make the file sharing secure
-* Try to use a other efficient data management algorithims to store large data
-* Try to have a check for malicious files
+### Part 2:
+Some important metrics of a well designed system are speed, security, scalability, etc. Redesign this server system to improve these metrics. (you are allowed to make changes to all the files for this part of the PS). Submit this as a seperate git pull request from your original PR. 
 
 **Note** : You are not allowed to modify the server code while working on the first Problem Statement (completing the split_store(file) and split_fetch(file) functions)<br>
 
