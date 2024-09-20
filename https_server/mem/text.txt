@@ -1,5 +1,0 @@
-Put text here to make it into a larger file, at least having 1024*100 bytes, so that they need to split it into 100 chunks
-Try to make each of these chunks distinct, so that while checking, we can open files and easily tell if they are split properly
-
-example put a starting and ending code which we need to see in every file if its been split properly.
-
