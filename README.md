@@ -63,3 +63,18 @@ chmod +x run.sh
 ./test.sh
 ```
 *Note* : To end the process, use `^C`
+
+## How to run individual files for debugging and testing
+* When you want to run individual files for debugging and testing purposes, Run it from the main directory of the codebase
+* For instancef if you want to run `server.sh` present in `Networks_Hackathon/https_server`. Make sure that your terminal's current working directory is 
+```
+../Networks_Hackathon
+```
+* And not
+```
+../Networks_Hackathon/https_server
+```
+* After ensuring you are in the main directory, you can run the file by executing
+```
+./https_server/python3 server.py
+```
