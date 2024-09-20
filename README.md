@@ -65,8 +65,8 @@ chmod +x run.sh
 *Note* : To end the process, use `^C`
 
 ## How to run individual files for debugging and testing
-* When you want to run individual files for debugging and testing purposes, Run it from the main directory of the codebase
-* For instancef if you want to run `server.sh` present in `Networks_Hackathon/https_server`. Make sure that your terminal's current working directory is 
+* When you want to run individual files for debugging and testing purposes, run it from the main directory of the codebase
+* For instance if you want to run `server.sh` present in `Networks_Hackathon/https_server`. Make sure that your terminal's current working directory is 
 ```
 ../Networks_Hackathon
 ```
