@@ -1,7 +1,7 @@
 # Networks_Hackathon
 
 ## The Servers
- You have access to 2 servers, one which communicates using HTTPS and other using TCP. To simulate these servers, there are 2 folders, namely server_https and server_tcp. These 2 servers store all files they get inside a folder called server_files
+ You have access to 2 servers, one which communicates using HTTPS and other using TCP. To simulate these servers, there are 2 folders, namely https_server and tcp_server. These 2 servers store all files they get inside a folder called mem
 
 
 ## Problem Statement
