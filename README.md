@@ -13,3 +13,13 @@ in tcp if i is even and http if i is odd.
 
 - First fetches the metadata file from the http server, 
 - Follows the same algorithtm while taking even chunks from tcp and odd from http
+
+
+## Improvements made
+
+- Added threading so that sends to http server, tcp server parallelly
+- Was creating temporary files in disk for sending to http server, removed this to reduce disk i/o (increase performance)
+
+## Scope for improvement
+
+- Add encryption to both servers
